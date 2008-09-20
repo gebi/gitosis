@@ -142,7 +142,15 @@ def serve(
             p = os.path.join(p, segment)
             util.mkdir(p, 0750)
 
-        repository.init(path=fullpath)
+        template = util.getCustomTemplatePath(config=cfg)
+        if template:
+            repository.init(
+                path=fullpath,
+                template=template,
+            )
+        repository.init(
+            path=fullpath,
+        )
         gitweb.set_descriptions(
             config=cfg,
             )

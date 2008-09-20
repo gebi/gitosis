@@ -34,3 +34,10 @@ def getSSHAuthorizedKeysPath(config):
     except (NoSectionError, NoOptionError):
         path = os.path.expanduser('~/.ssh/authorized_keys')
     return path
+
+def getCustomTemplatePath(config):
+    try:
+        path = os.path.expanduser(config.get('gitosis', 'templates'))
+    except (NoSectionError, NoOptionError):
+        path = None
+    return path
